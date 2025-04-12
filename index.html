@@ -3,16 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Gestión de Botica</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f1f1f1; padding: 20px; }
-    h1 { color: #2c3e50; }
-    .container { display: flex; gap: 20px; }
-    .box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); width: 30%; }
-    .product { margin: 5px 0; display: flex; justify-content: space-between; }
-    .btn { margin-top: 10px; padding: 5px 10px; cursor: pointer; border: none; background: #27ae60; color: white; border-radius: 5px; }
-    .btn-danger { background: #c0392b; }
-    .btn-small { padding: 2px 5px; font-size: 12px; }
-  </style>
+  <link rel="stylesheet" href="style.css">
+
+  <script src="software.js"></script>   
 </head>
 <body>
   <h1>Software de Gestión para Botica</h1>
@@ -43,72 +36,6 @@
 
   </div>
 
-  <script>
-    const inventory = [];
-    const sale = [];
-
-    function renderInventory() {
-      const inventoryList = document.getElementById('inventory-list');
-      inventoryList.innerHTML = '';
-      inventory.forEach((item, index) => {
-        const div = document.createElement('div');
-        div.className = 'product';
-        div.innerHTML = `
-          <span>${item.name} - S/ ${item.price}</span>
-          <span>
-            <button class="btn-small" onclick="addToSale(${index})">Añadir</button>
-            <button class="btn-small btn-danger" onclick="removeProduct(${index})">Eliminar</button>
-          </span>
-        `;
-        inventoryList.appendChild(div);
-      });
-    }
-
-    function renderSale() {
-      const salesList = document.getElementById('sales-list');
-      const totalElement = document.getElementById('total');
-      salesList.innerHTML = '';
-      let total = 0;
-      sale.forEach((item) => {
-        const div = document.createElement('div');
-        div.className = 'product';
-        div.innerHTML = `${item.name} - S/ ${item.price}`;
-        salesList.appendChild(div);
-        total += item.price;
-      });
-      totalElement.innerText = total.toFixed(2);
-    }
-
-    function addProduct() {
-      const name = document.getElementById('product-name').value;
-      const price = parseFloat(document.getElementById('product-price').value);
-      if (name && !isNaN(price)) {
-        inventory.push({ name, price });
-        renderInventory();
-        document.getElementById('product-name').value = '';
-        document.getElementById('product-price').value = '';
-      }
-    }
-
-    function removeProduct(index) { 
-      inventory.splice(index, 1);
-      renderInventory();
-    }
-
-    function addToSale(index) {
-      sale.push(inventory[index]);
-      renderSale();
-    }
-
-    function completeSale() {
-      if (sale.length === 0) {
-        alert('No hay productos para vender.');
-        return;
-      }
-      alert('Venta completada por S/ ' + document.getElementById('total').innerText);
-      sale.length = 0;
-      renderSale();
-    }
-  </script>
+  
 </body>
 </html>
