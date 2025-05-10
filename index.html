@@ -2,40 +2,54 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Gestión de Botica</title>
-  <link rel="stylesheet" href="style.css">
-
-  <script src="software.js"></script>   
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario y Ventas - EMPRESARIOTEC</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Software de Gestión para Botica</h1>
-  <div class="container">
 
-    <!-- Inventario -->
-    <div class="box">
-      <h2>Inventario</h2>
-      <div id="inventory-list"></div>
-      <input id="product-name" type="text" placeholder="Nombre del producto">
-      <input id="product-price" type="number" placeholder="Precio">
-      <button class="btn" onclick="addProduct()">Añadir producto</button>
-    </div>
+<header>EMPRESARIOTEC - Sistema de Inventario y Ventas</header>
 
-    <!-- Ventas -->
-    <div class="box">
-      <h2>Ventas</h2>
-      <div id="sales-list"></div>
-      <p><strong>Total: S/ <span id="total">0</span></strong></p>
-      <button class="btn" onclick="completeSale()">Vender</button>
-    </div>
+<div class="container">
 
-    <!-- Atención al Cliente -->
-    <div class="box">
-      <h2>Atención al Cliente</h2>
-      <p>Selecciona productos desde el inventario para añadirlos a la venta.</p>
-    </div>
-
+  <div class="box">
+    <h2>Añadir Producto</h2>
+    <input type="text" id="product-name" placeholder="Nombre del producto">
+    <input type="number" id="product-price" placeholder="Precio">
+    <input type="number" id="product-quantity" placeholder="Cantidad">
+    <button class="btn" onclick="addProduct()">Agregar al Inventario</button>
   </div>
 
-  
+  <div class="box">
+    <h2>Inventario</h2>
+    <div id="inventory-list"></div>
+  </div>
+
+  <div class="box">
+    <h2>Carrito de Ventas</h2>
+    <div id="sales-list"></div>
+    <div class="invoice-total">Total: S/ <span id="total">0.00</span></div>
+    <button class="btn" onclick="completeSale()">Completar Venta</button>
+  </div>
+
+  <div class="box">
+    <h2>Historial de Ventas</h2>
+    <div id="sales-history-list"></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="invoice-preview" id="invoice-box" style="display:none;">
+    <h3>Factura de Venta</h3>
+    <div id="invoice-items"></div>
+    <div class="invoice-total">Total: S/ <span id="invoice-total"></span></div>
+    <button class="btn" onclick="closeInvoice()">Cerrar</button>
+    <button class="btn" onclick="printInvoice()">Imprimir Boleta</button> <!-- Nuevo botón -->
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="software.js"></script>
+
 </body>
 </html>
